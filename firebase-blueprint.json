@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "Scan": {
+      "title": "Skin Scan",
+      "description": "Result of an AI skin analysis",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "UID of the user who performed the scan" },
+        "imageUrl": { "type": "string", "description": "Reference to the scanned image (base64 or URL)" },
+        "concern": { "type": "string", "description": "User's reported concern" },
+        "hydration": { "type": "number" },
+        "oiliness": { "type": "number" },
+        "acne": { "type": "number" },
+        "dark_spots": { "type": "number" },
+        "summary": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "routine": {
+          "type": "object",
+          "properties": {
+            "am": { "type": "array", "items": { "type": "string" } },
+            "pm": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "hydration", "oiliness", "acne", "dark_spots", "summary", "createdAt"]
+    },
+    "User": {
+      "title": "User Profile",
+      "description": "Basic user preferences and metadata",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "/users/{userId}/scans/{scanId}": {
+      "schema": "Scan",
+      "description": "History of skin scans for a specific user"
+    }
+  }
+}

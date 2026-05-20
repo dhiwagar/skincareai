@@ -1,0 +1,11 @@
+{
+  "name": "Skin.Chat",
+  "description": "AI-powered skin analysis and personalized skincare routine generator.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "AI Vision Analysis",
+    "Skincare Recommendations"
+  ]
+}
